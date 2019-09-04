@@ -17,5 +17,7 @@ LazyData: true
 Imports:
     rgbif,
     dplyr,
-    stringr
+    stringr,
+    ncdf4,
+    raster
 RoxygenNote: 6.1.1
