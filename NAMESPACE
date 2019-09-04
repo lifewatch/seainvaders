@@ -3,6 +3,7 @@
 export(extract_temperature)
 export(get_temperature)
 export(get_wrims_species)
+export(launch_app)
 import(dplyr)
 import(ncdf4)
 import(raster)
