@@ -11,4 +11,8 @@ sp <- get_wrims_species
 
 temp_data <- get_temperature()
 t <- extract_temperature(0, 55)
+
+# launch shiny app
+
+launch_app()
 ```

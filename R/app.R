@@ -1,6 +1,8 @@
+library(shiny)
+
 #' Launch shiny app.
 #'
 #' @export
 launch_app <- function() {
-  shiny::runApp(appDir = system.file("application"))
+  runApp(appDir = system.file("application", package = "findingdemo"))
 }

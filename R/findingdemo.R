@@ -4,5 +4,5 @@
 #'
 #' @docType package
 #' @name findingdemo
-#' @import dplyr rgbif stringr ncdf4 raster
+#' @import dplyr rgbif stringr ncdf4 raster shiny shinythemes
 NULL
