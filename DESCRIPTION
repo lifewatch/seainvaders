@@ -1,11 +1,21 @@
 Package: findingdemo
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Finding demo team package
 Version: 0.1.0
-Author: Who wrote it
+Authors@R: c(
+    person("Jelle", "Rondelez", , "jelle.rondelez@vliz.be", c("aut")),
+    person("Salvador", "Fernandez", , "salvador.fernandez@vliz.be", c("aut")),
+    person("Jonas", "Lescroart", , "jonas.lescroart@vliz.be", c("aut")),
+    person("Ruben", "Perez", , "ruben.perez@vliz.be", c("aut")),
+    person("Pieter", "Provoost", , "pieterprovoost@gmail.com", c("cre", "aut"))
+  )
 Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Description: Finding demo team package.
+License: MIT
 Encoding: UTF-8
 LazyData: true
+Imports:
+    rgbif,
+    dplyr,
+    stringr
+RoxygenNote: 6.1.1
