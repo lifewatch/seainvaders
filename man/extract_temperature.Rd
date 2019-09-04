@@ -4,7 +4,7 @@
 \alias{extract_temperature}
 \title{Extract temperature values for point locations.}
 \usage{
-extract_temperature(x, lon, lat)
+extract_temperature(x, lon = 0, lat = 55)
 }
 \description{
 Extract temperature values for point locations.
