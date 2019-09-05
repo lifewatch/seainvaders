@@ -29,6 +29,10 @@ occ <- get_occurrence(159559)
 #### Create habitat suitability maps
 
 ```r
+temp <- get_biooracle_temperature()
+sal <- get_biooracle_salinity()
+
+plot_niche(occ, temp, sal)
 hs <- make_suitability(occ, temp, sal)
 
 df <- as.data.frame(hs, xy = TRUE) %>%
