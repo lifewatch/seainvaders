@@ -58,7 +58,8 @@ launch_app()
 
 ```r
 d <- create_distance_raster(occ = occ, res = 1000)
-plot(d)
+plot(log10(d))
+points(occ$longitude, occ$latitude)
 ```
 
 ## Test species
