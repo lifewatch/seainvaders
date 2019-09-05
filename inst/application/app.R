@@ -5,20 +5,27 @@ library(shiny)
 library(leaflet)
 library(data.table)
 library(shinythemes)
+library(shinyjs)
+library(shinyalert)
+library(DT)
 
-user_long <- 4
-user_lat <- 51
 
 ######################
 ### USER INTERFACE ###
 
-ui <- fluidPage(theme = shinytheme("cosmo"),
+ui <- fluidPage(
+
+    useShinyalert(),
+
+    theme = shinytheme("cosmo"),
+
     titlePanel("FindingDemo Application for EMODNet Open Sea Lab"),
     br(),
     fluidRow(column(width = 7,
                     offset = 1,
                     actionButton(inputId = "Locationinput",
-                                 label = "Trace location"),
+                                 label = "Trace location",
+                                 onClick = "shinyjs.geoloc()"),
                     h4(textOutput(outputId = "Clickonmap")),
                     textOutput(outputId = "Coordinates"),
                     br(),
@@ -54,6 +61,35 @@ server <- function(input, output) {
     #### REACTIVITY ####
     ####################
 
+    data_of_click <- reactiveValues(clicked=NULL)
+
+    observeEvent(input$Map_click, {
+        data_of_click$clicked <- input$Map_click
+        leafletProxy('Map') %>%
+            clearMarkers()%>%
+            addMarkers(lng = input$Map_click$lng,
+                       lat = input$Map_click$lat,
+                       popup = paste("Longitude=",round(input$Map_click$lng,2),"and", "Lattitude=", round(input$Map_click$lat,2)))
+    })
+
+    observeEvent(input$Submit, {
+        shinyalert(
+            title = "Thanks",
+            text = paste("Sightings saved for", input$Name,"(", input$Mail, ")", "on", input$Date, "at", round(data_of_click$clicked$lng,2),"Longitude","and",round(data_of_click$clicked$lat,2),"Lattitude"),
+            closeOnEsc = TRUE,
+            closeOnClickOutside = TRUE,
+            html = FALSE,
+            type = "success",
+            showConfirmButton = TRUE,
+            showCancelButton = FALSE,
+            confirmButtonText = "Done",
+            confirmButtonCol = "#AEDEF4",
+            imageUrl = "",
+            animation = TRUE
+        )
+    })
+
+
     #######################
     #### VISUALIZATION ####
     #######################
@@ -68,16 +104,6 @@ server <- function(input, output) {
             addProviderTiles("Stamen.Watercolor")
     })
 
-    observeEvent(input$Map_click, {
-        click = input$Map_click
-        user_long <- click$lng
-        user_lat <- click$lat
-        leafletProxy('Map') %>%
-            clearMarkers()%>%
-            addMarkers(lng = user_long, lat = user_lat)
-
-    })
-
 
     output$Introduction <- renderText({
         text <- "During three days, in the vibrant and historical city of Ghent (Belgium),
@@ -88,13 +114,13 @@ server <- function(input, output) {
         })
 
     output$Invasive <- renderTable({
-        DT <- data.table(x = 1:3, y = 1:3)
+        DT <- data.table(Species = 1:3, Probability = 1:3)
+        DT[["Seen"]]
     })
 
     output$Coordinates <- renderText({
-        paste("Longitude","=", user_long, "Lattitude", "=", user_lat)
+        paste("Lattitude =", data_of_click$clicked$lat," ---------- ","Longitude =", data_of_click$clicked$lng)
     })
-
 }
 
 #######################
