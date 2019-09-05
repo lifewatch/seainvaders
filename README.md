@@ -29,7 +29,7 @@ occ <- get_occurrence(159559)
 #### Create habitat suitability maps
 
 ```r
-occ <- get_occurrence(140656)
+occ <- get_occurrence(232032)
 temp <- get_biooracle_temperature()
 sal <- get_biooracle_salinity()
 
@@ -39,7 +39,7 @@ hs <- make_suitability(occ, temp, sal)
 df <- as.data.frame(hs, xy = TRUE)
 ggplot() +
     geom_raster(data = df, aes(x = x, y = y, fill = suitability)) +
-    scale_fill_viridis_c() +
+    scale_fill_viridis_c(trans = "exp") +
     coord_quickmap() +
     geom_point(data = occ, aes(x = longitude, y = latitude), size = 0.3)
 ```
@@ -50,4 +50,19 @@ ggplot() +
 
 ```r
 launch_app()
+```
+
+## Test species
+
+```
+107451 Eriocheir sinensis
+129884 Heteromastus filiformis
+144476 Caulerpa taxifolia
+138963 Crepidula fornicata
+876640 Ensis leei
+140416 Rapana venosa
+233889 Paralithodes camtschaticus
+160585 Heterosigma akashiwo
+103732 Ciona intestinalis
+232032 Rhopilema nomadica
 ```
