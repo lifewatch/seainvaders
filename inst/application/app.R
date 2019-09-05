@@ -1,6 +1,7 @@
 ###################
 ### STATIC PART ###
 
+#Import libraries
 library(shiny)
 library(leaflet)
 library(data.table)
@@ -11,47 +12,58 @@ library(shinyalert)
 library(DT)
 
 
-
 ######################
 ### USER INTERFACE ###
 
 ui <- fluidPage(
 
+    #function for submit-popup
     useShinyalert(),
 
+    #Theme of the application
     theme = shinytheme("cosmo"),
 
-    titlePanel("FindingDemo Application for EMODNet Open Sea Lab"),
-    br(),
-    fluidRow(column(width = 7,
-                    offset = 1,
-                    actionButton(inputId = "Locationinput",
-                                 label = "Trace location",
-                                 onClick = "shinyjs.geoloc()"),
-                    h4(textOutput(outputId = "Clickonmap")),
-                    textOutput(outputId = "Coordinates"),
-                    br(),
-                    br(),
-                    leafletOutput(outputId ="Map"),
-                    br(),
-                    tableOutput(outputId = "Invasive")),
+
+    #Tab 1 with information over the concept
+    tabsetPanel(
+        tabPanel("About",
+                 titlePanel("About"),
+                 htmlOutput("Abouttext")),
+
+        #Tab 2 with the content of the application
+        tabPanel("Application",
+                 titlePanel("FindingDemo Application for EMODNet Open Sea Lab"),
+                 br(),
+                 fluidRow(column(width = 7,
+                                 offset = 1,
+                                 actionButton(inputId = "Locationinput",
+                                              label = "Trace location",
+                                              onClick = "shinyjs.geoloc()"),
+                                 h4(textOutput(outputId = "Clickonmap")),
+                                 textOutput(outputId = "Coordinates"),
+                                 br(),
+                                 br(),
+                                 leafletOutput(outputId ="Map"),
+                                 br(),
+                                 tableOutput(outputId = "Invasive")),
 
 
-             column(width = 3,
-                    offset = 1,
-                    textOutput(outputId = "Introduction"),
-                    br(),
-                    br(),
-                    br(),
-                    textInput(inputId = "Name",
-                              label = "Name"),
-                    textInput(inputId = "Mail",
-                              label = "Email address"),
-                    dateInput(inputId = "Date",
-                              label = "Date of sighting"),
-                    actionButton(inputId = "Submit",
-                                 label = "SUBMIT"))
-             )
+                          column(width = 3,
+                                 offset = 1,
+                                 textOutput(outputId = "Introduction"),
+                                 br(),
+                                 br(),
+                                 br(),
+                                 textInput(inputId = "Name",
+                                           label = "Name"),
+                                 textInput(inputId = "Mail",
+                                           label = "Email address"),
+                                 dateInput(inputId = "Date",
+                                           label = "Date of sighting"),
+                                 actionButton(inputId = "Submit",
+                                              label = "SUBMIT"))
+                 ))
+    )
 )
 
 ########################
@@ -59,7 +71,8 @@ ui <- fluidPage(
 
 server <- function(input, output) {
 
-    # create a character vector of shiny inputs
+
+    # create a character vector of shiny inputs for checkboxes
     shinyInput = function(FUN, len, id, ...) {
         inputs = character(len)
         for (i in seq_len(len)) {
@@ -72,8 +85,10 @@ server <- function(input, output) {
     #### REACTIVITY ####
     ####################
 
+    #Reactive values for user location
     data_of_click <- reactiveValues(clicked=NULL)
 
+    #IF user clicks on map, new coordinates are saved and map is adjusted
     observeEvent(input$Map_click, {
         data_of_click$clicked <- input$Map_click
         leafletProxy('Map') %>%
@@ -83,6 +98,15 @@ server <- function(input, output) {
                        popup = paste("Longitude=",round(input$Map_click$lng,2),"and", "Lattitude=", round(input$Map_click$lat,2)))
     })
 
+    #If user clicks track location its gps location is saved and the map is adjusted
+    observeEvent(input$Locationinput, {
+        leafletProxy('Map') %>%
+            clearMarkers() %>%
+            addControlGPS(options = gpsOptions(position = "topleft", activate = TRUE, autoCenter = TRUE, maxZoom = 60, setView = TRUE))
+        data_of_click$clicked <- input$Map_gps_located
+    })
+
+    #If user submits, a popup is generated
     observeEvent(input$Submit, {
         shinyalert(
             title = "Thanks",
@@ -94,7 +118,7 @@ server <- function(input, output) {
             showConfirmButton = TRUE,
             showCancelButton = FALSE,
             confirmButtonText = "Done",
-            confirmButtonCol = "#AEDEF4",
+            confirmButtonCol = "#E0AB8B",
             imageUrl = "",
             animation = TRUE
         )
@@ -106,16 +130,19 @@ server <- function(input, output) {
     #######################
 
 
+    #Information underneath location button
     output$Clickonmap <- renderText({
         text <- "or click on the map below"
     })
 
+    #Generation of base map
     output$Map <- renderLeaflet({
         map <- leaflet(options = leafletOptions(maxZoom = 8))%>%
             addProviderTiles("Stamen.Watercolor")
     })
 
 
+    #Explanatory text in application tab
     output$Introduction <- renderText({
         text <- "During three days, in the vibrant and historical city of Ghent (Belgium),
         teams will compete and bring their expertise to develop novel marine and maritime applications using EMODnet,
@@ -124,6 +151,7 @@ server <- function(input, output) {
         lead workshops and coach you to bring your innovative ideas into working solutions."
         })
 
+    #Generating mock datatable (needs to be replaced with species)
     res <- data.table(
         Species = 1:3,
         Probability = 1:3,
@@ -132,15 +160,23 @@ server <- function(input, output) {
         NotChecked = shinyInput(checkboxInput, 3,'Unchecked_', value = FALSE),
         stringsAsFactors = FALSE)
 
+    #Generating table with checkboxes
     output$Invasive = renderTable({res},
-        server = FALSE, escape = FALSE, selection = 'none', options = list(
-            preDrawCallback = JS('function() { Shiny.unbindAll(this.api().table().node()); }'),
-            drawCallback = JS('function() { Shiny.bindAll(this.api().table().node()); } '),
-            sanitize.text.function = function(x) x)
-    )
+                                  server = FALSE,
+                                  escape = FALSE,
+                                  selection = 'none',
+                                  options = list(preDrawCallback = JS('function() { Shiny.unbindAll(this.api().table().node()); }'),
+                                                 drawCallback = JS('function() { Shiny.bindAll(this.api().table().node()); } ')),
+                                  sanitize.text.function = function(x) x)
 
+    #Display coordinates in app
     output$Coordinates <- renderText({
         paste("Lattitude =", data_of_click$clicked$lat," ---------- ","Longitude =", data_of_click$clicked$lng)
+    })
+
+    #Text on the about page
+    output$Abouttext <- renderUI({
+        HTML()
     })
 }
 
