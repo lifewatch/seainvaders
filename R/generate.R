@@ -14,18 +14,11 @@ generate <- function(aphiaid, temp, sal) {
   writeRaster(d, d_file)
 }
 
-#' WRiMS subset.
-#'
-#' @export
-wrims_subset <- function() {
-  return(c(107451, 129884, 144476, 138963, 876640, 140416, 233889, 160585, 103732, 232032, 106362, 102296, 126916, 421139, 234025))
-}
-
 #' Generate all rasters.
 #'
 #' @export
 generate_all <- function() {
-  ss <- wrims_subset()
+  ss <- wrims_subset()$aphiaid
   temp <- get_biooracle_temperature()
   sal <- get_biooracle_salinity()
   for (id in ss) {

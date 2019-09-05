@@ -48,18 +48,25 @@ ggplot() +
 
 ![suitability](cercopagis_pengoi.png)
 
-#### Launch shiny app
-
-```r
-launch_app()
-```
-
 #### Create distance raster
 
 ```r
 d <- create_distance_raster(occ = occ, res = 1000)
 plot(log10(d))
 points(occ$longitude, occ$latitude)
+```
+
+#### Create ranking table
+
+```r
+rasters <- load_rasters()
+ranking <- make_ranking(rasters, 0.5, 53.3)
+```
+
+#### Launch shiny app
+
+```r
+launch_app()
 ```
 
 ## Test species

@@ -12,3 +12,12 @@ get_wrims_species <- function() {
     mutate(aphiaid = str_extract(taxonID, "[0-9]+"))
   return(taxa)
 }
+
+#' WRiMS subset.
+#'
+#' @export
+wrims_subset <- function() {
+  file <- paste0(path.package("findingdemo"), "/subset.csv")
+  df <- read.csv(file, stringsAsFactors = FALSE)
+  return(df)
+}
