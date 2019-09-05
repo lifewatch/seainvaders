@@ -10,6 +10,7 @@ library(shinyalert)
 library(DT)
 
 
+
 ######################
 ### USER INTERFACE ###
 
@@ -56,6 +57,15 @@ ui <- fluidPage(
 ### SERVER FUNCTIONS ###
 
 server <- function(input, output) {
+
+    # create a character vector of shiny inputs
+    shinyInput = function(FUN, len, id, ...) {
+        inputs = character(len)
+        for (i in seq_len(len)) {
+            inputs[i] = as.character(FUN(paste0(id, i), label = NULL, ...))
+        }
+        inputs
+    }
 
     ####################
     #### REACTIVITY ####
@@ -113,10 +123,20 @@ server <- function(input, output) {
         lead workshops and coach you to bring your innovative ideas into working solutions."
         })
 
-    output$Invasive <- renderTable({
-        DT <- data.table(Species = 1:3, Probability = 1:3)
-        DT[["Seen"]]
-    })
+    res <- data.table(
+        Species = 1:3,
+        Probability = 1:3,
+        Seen = shinyInput(checkboxInput,3,'Seen_', value = FALSE),
+        Unseen = shinyInput(checkboxInput,3,'Unseen_', value = FALSE),
+        NotChecked = shinyInput(checkboxInput, 3,'Unchecked_', value = FALSE),
+        stringsAsFactors = FALSE)
+
+    output$Invasive = renderTable({res},
+        server = FALSE, escape = FALSE, selection = 'none', options = list(
+            preDrawCallback = JS('function() { Shiny.unbindAll(this.api().table().node()); }'),
+            drawCallback = JS('function() { Shiny.bindAll(this.api().table().node()); } '),
+            sanitize.text.function = function(x) x)
+    )
 
     output$Coordinates <- renderText({
         paste("Lattitude =", data_of_click$clicked$lat," ---------- ","Longitude =", data_of_click$clicked$lng)
