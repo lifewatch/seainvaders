@@ -4,6 +4,7 @@
 library(shiny)
 library(leaflet)
 library(data.table)
+library(leaflet.extras)
 library(shinythemes)
 library(shinyjs)
 library(shinyalert)

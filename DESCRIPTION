@@ -23,5 +23,6 @@ Imports:
     shiny,
     shinythemes,
     sf,
-    shinyjs
+    shinyjs,
+    shinyalert
 RoxygenNote: 6.1.1
