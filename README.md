@@ -1,32 +1,32 @@
 # findingdemo
 
 ## How to
-#### fetch WRiMS species list
+#### Fetch WRiMS species list
 
 ```r
 sp <- get_wrims_species
 ```
 
-#### fetch temperature and salinity raster data
+#### Fetch temperature and salinity raster data
 
 ```r
 temp <- get_temperature()
 sal <- get_salinity()
 ```
 
-#### extract raster data
+#### Extract raster data
 
 ```r
 t <- extract_raster(temp, 0, 55)
 ```
 
-#### fetch occurrence data for an AphiaID
+#### Fetch occurrence data for an AphiaID
 
 ```r
 occ <- get_occurrence(159559)
 ```
 
-#### create habitat suitability maps
+#### Create habitat suitability maps
 
 ```r
 hs <- make_suitability(occ, temp, sal)
@@ -41,7 +41,7 @@ ggplot() +
 
 ![suitability](suitability.png)
 
-#### launch shiny app
+#### Launch shiny app
 
 ```r
 launch_app()
