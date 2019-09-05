@@ -25,5 +25,6 @@ Imports:
     sf,
     shinyjs,
     shinyalert,
-    gdistance
+    gdistance,
+    maptools
 RoxygenNote: 6.1.1
