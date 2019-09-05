@@ -15,6 +15,8 @@ make_suitability <- function(occ, temp, sal) {
     return(mahalanobis(c(tp, sp), cm, v))
   }
   res <- overlay(temp, sal, fun = Vectorize(maha))
+  res <- 1 - (res / maxValue(res))
+  names(res) <- "suitability"
   return(res)
 }
 

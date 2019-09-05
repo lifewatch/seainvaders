@@ -36,16 +36,15 @@ sal <- get_biooracle_salinity()
 plot_niche(occ, temp, sal)
 hs <- make_suitability(occ, temp, sal)
 
-df <- as.data.frame(hs, xy = TRUE) %>%
-  mutate(suitability = 1 / layer)
+df <- as.data.frame(hs, xy = TRUE)
 ggplot() +
     geom_raster(data = df, aes(x = x, y = y, fill = suitability)) +
-    scale_fill_viridis_c(trans = "log10") +
+    scale_fill_viridis_c() +
     coord_quickmap() +
     geom_point(data = occ, aes(x = longitude, y = latitude), size = 0.3)
 ```
 
-![suitability](suitability.png)
+![suitability](crassostrea_gigas.png)
 
 #### Launch shiny app
 
