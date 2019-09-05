@@ -29,7 +29,7 @@ occ <- get_occurrence(159559)
 #### Create habitat suitability maps
 
 ```r
-occ <- get_occurrence(107451)
+occ <- get_occurrence(140656)
 temp <- get_biooracle_temperature()
 sal <- get_biooracle_salinity()
 
