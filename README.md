@@ -3,14 +3,22 @@
 ## How to
 
 ```r
-# fetch WRiMS species
+# fetch WRiMS species list
 
 sp <- get_wrims_species
 
-# fetch and extract temperature data
+# fetch temperature and salinity raster data
 
 temp_data <- get_temperature()
-t <- extract_temperature(0, 55)
+sal_data <- get_salinity()
+
+# extract raster data
+
+t <- extract_raster(temp_data, 0, 55)
+
+# fetch occurrence data for an AphiaID
+
+occ <- get_occurrence(159559)
 
 # launch shiny app
 

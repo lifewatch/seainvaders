@@ -4,14 +4,14 @@ library(raster)
 #' Fetches temperature data.
 #'
 #' @export
-get_temperature <- function(bbox = c(-30, 30, 20, 90), time = "2015-12-15T00:00:00Z") {
+get_temperature <- function(bbox = c(-40, 50, 20, 90), time = "2015-12-15T00:00:00Z") {
   return(get_raster("TEMP", bbox, time))
 }
 
 #' Fetches salinity data.
 #'
 #' @export
-get_salinity <- function(bbox = c(-30, 30, 20, 90), time = "2015-12-15T00:00:00Z") {
+get_salinity <- function(bbox = c(-40, 50, 20, 90), time = "2015-12-15T00:00:00Z") {
   return(get_raster("PSAL", bbox, time))
 }
 
@@ -25,10 +25,10 @@ get_raster <- function(var, bbox, time) {
   return(br[[1]])
 }
 
-#' Extract temperature values for point locations.
+#' Extract raster values for point locations.
 #'
 #' @export
-extract_temperature <- function(x, lon = 0, lat = 55) {
+extract_raster <- function(x, lon = 0, lat = 55) {
   extract.pts <- cbind(lon, lat)
   ext <- extract(x, extract.pts, method = "bilinear")
   return(ext)
