@@ -13,6 +13,6 @@ Create a distance raster.
 eur_x <- c(0, -20, -20)
 eur_y <- c(30, 30, 50)
 occ <- cbind(eur_x, eur_y)
-map1 = get_distance_raster(occ = occ, res = 300)
+map1 = create_distance_raster(occ = occ, res = 300)
 plot(map1)
 }

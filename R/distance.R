@@ -11,7 +11,7 @@ library(rgdal)
 #' eur_x <- c(0, -20, -20)
 #' eur_y <- c(30, 30, 50)
 #' occ <- cbind(eur_x, eur_y)
-#' map1 = get_distance_raster(occ = occ, res = 300)
+#' map1 = create_distance_raster(occ = occ, res = 300)
 #' plot(map1)
 create_distance_raster = function(occ, res, bbox = c(-45, 70, 26, 90)) {
   occ <- as.matrix(as.data.frame(occ)[,c("longitude", "latitude")])
