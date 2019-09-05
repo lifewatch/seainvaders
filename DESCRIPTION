@@ -19,5 +19,8 @@ Imports:
     dplyr,
     stringr,
     ncdf4,
-    raster
+    raster,
+    shiny,
+    shinythemes,
+    sf
 RoxygenNote: 6.1.1

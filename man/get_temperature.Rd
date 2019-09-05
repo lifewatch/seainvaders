@@ -2,11 +2,11 @@
 % Please edit documentation in R/temperature.R
 \name{get_temperature}
 \alias{get_temperature}
-\title{Fetches temperature data. See https://rpubs.com/markpayne/358146}
+\title{Fetches temperature data.}
 \usage{
-get_temperature(bbox = c(-30, 30, 20, 90),
+get_temperature(bbox = c(-40, 50, 20, 90),
   time = "2015-12-15T00:00:00Z")
 }
 \description{
-Fetches temperature data. See https://rpubs.com/markpayne/358146
+Fetches temperature data.
 }
