@@ -29,6 +29,7 @@ occ <- get_occurrence(159559)
 #### Create habitat suitability maps
 
 ```r
+occ <- get_occurrence(107451)
 temp <- get_biooracle_temperature()
 sal <- get_biooracle_salinity()
 
@@ -40,7 +41,8 @@ df <- as.data.frame(hs, xy = TRUE) %>%
 ggplot() +
     geom_raster(data = df, aes(x = x, y = y, fill = suitability)) +
     scale_fill_viridis_c(trans = "log10") +
-    coord_quickmap()
+    coord_quickmap() +
+    geom_point(data = occ, aes(x = longitude, y = latitude), size = 0.3)
 ```
 
 ![suitability](suitability.png)
