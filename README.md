@@ -1,5 +1,7 @@
 # findingdemo
+
 Sea Invaders provides recreational divers with a 'most wanted' list of invasive species! Based on their location, the service compiles a list of known troublemakers that are most likely to start invading their favourite diving spot. The risk of invasion by given species is based on local habitat suitability and distance to the nearest occurrence. This citizen science tool lets the diving community know what species they need to look out for and acts as a network of early detection for invasive species across Europe.
+
 ## How to
 #### Fetch WRiMS species list
 
@@ -29,7 +31,7 @@ occ <- get_occurrence(159559)
 #### Create habitat suitability maps
 
 ```r
-occ <- get_occurrence(232032)
+occ <- get_occurrence(234025)
 temp <- get_biooracle_temperature()
 sal <- get_biooracle_salinity()
 
@@ -44,7 +46,7 @@ ggplot() +
     geom_point(data = occ, aes(x = longitude, y = latitude), size = 0.3)
 ```
 
-![suitability](crassostrea_gigas.png)
+![suitability](cercopagis_pengoi.png)
 
 #### Launch shiny app
 
@@ -65,4 +67,9 @@ launch_app()
 160585 Heterosigma akashiwo
 103732 Ciona intestinalis
 232032 Rhopilema nomadica
+106362 Beroe ovata
+102296 Gammarus tigrinus
+126916 Neogobius melanostomus
+421139 Amphibalanus improvisus
+234025 Cercopagis (Cercopagis) pengoi
 ```
