@@ -22,5 +22,6 @@ Imports:
     raster,
     shiny,
     shinythemes,
-    sf
+    sf,
+    shinyjs
 RoxygenNote: 6.1.1
