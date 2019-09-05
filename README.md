@@ -54,6 +54,13 @@ ggplot() +
 launch_app()
 ```
 
+#### Create distance raster
+
+```r
+d <- get_distance_raster(occ = occ, res = 1000)
+plot(d)
+```
+
 ## Test species
 
 ```
