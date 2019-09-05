@@ -21,5 +21,6 @@ Imports:
     ncdf4,
     raster,
     shiny,
-    shinythemes
+    shinythemes,
+    sf
 RoxygenNote: 6.1.1
