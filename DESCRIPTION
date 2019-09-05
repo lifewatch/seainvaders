@@ -24,5 +24,6 @@ Imports:
     shinythemes,
     sf,
     shinyjs,
-    shinyalert
+    shinyalert,
+    gdistance
 RoxygenNote: 6.1.1
