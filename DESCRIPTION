@@ -28,5 +28,7 @@ Imports:
     gdistance,
     maptools,
     rgdal,
-    leaflet
+    leaflet,
+    leaflet.extras,
+    DT
 RoxygenNote: 6.1.1
