@@ -195,6 +195,8 @@ server <- function(input, output) {
   output$Abouttext <- renderUI({
     HTML("<h1><strong>Sea Invaders!</strong></h1>
 
+    <p><img src='https://github.com/iobis/findingdemo/blob/master/images/SeaInvaders_small.png?raw=true' style=''></p>
+
     <h2>Concept</h2>
     <p align='justify'>
     <i>Sea Invaders!</i> provides recreational divers with a 'most wanted' list of invasive species!
@@ -207,7 +209,7 @@ server <- function(input, output) {
 
     <h2>Pipeline</h2>
     <img src='https://github.com/iobis/findingdemo/blob/master/images/scheme.png?raw=true' style='width:500px;height:500px;'>
-    <img src='https://github.com/iobis/findingdemo/blob/master/images/eriocheir_sinensis.png?raw=true' style='width:800px; height:500px;'>
+    <img src='https://github.com/iobis/findingdemo/blob/master/images/cercopagis_pengoi.png?raw=true' style='width:800px; height:500px;'>
     <img src='https://github.com/iobis/findingdemo/blob/master/images/distance.png?raw= true' style='width:800px; height:500px;'>
 
     <h2>Repository</h2>
