@@ -2,6 +2,8 @@
 
 Sea Invaders provides recreational divers with a 'most wanted' list of invasive species! Based on their location, the service compiles a list of known troublemakers that are most likely to start invading their favourite diving spot. The risk of invasion by given species is based on local habitat suitability and distance to the nearest occurrence. This citizen science tool lets the diving community know what species they need to look out for and acts as a network of early detection for invasive species across Europe.
 
+![logo](images/SeaInvaders_small.png)
+
 ## How to
 #### Fetch WRiMS species list
 
