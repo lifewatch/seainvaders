@@ -36,18 +36,7 @@ ui <- fluidPage(
     tabPanel("Application",
              titlePanel("FindingDemo Application for EMODNet Open Sea Lab"),
              br(),
-             fluidRow(column(width = 3,
-                             offset = 1,
-                             htmlOutput(outputId = "Introduction"),
-                             br(),
-                             textInput(inputId = "Name",
-                                       label = "Name"),
-                             textInput(inputId = "Mail",
-                                       label = "Email address"),
-                             dateInput(inputId = "Date",
-                                       label = "Date of sighting"),
-                             actionButton(inputId = "Submit",
-                                          label = "SUBMIT")),
+             fluidRow(
                       br(),
                       br(),
 
@@ -62,7 +51,20 @@ ui <- fluidPage(
                              br(),
                              leafletOutput(outputId ="Map"),
                              br(),
-                             tableOutput(outputId = "Invasive"))
+                             tableOutput(outputId = "Invasive")),
+
+                      column(width = 3,
+                             offset = 1,
+                             htmlOutput(outputId = "Introduction"),
+                             br(),
+                             textInput(inputId = "Name",
+                                       label = "Name"),
+                             textInput(inputId = "Mail",
+                                       label = "Email address"),
+                             dateInput(inputId = "Date",
+                                       label = "Date of sighting"),
+                             actionButton(inputId = "Submit",
+                                          label = "SUBMIT"))
              ))
   )
 )
@@ -167,13 +169,14 @@ server <- function(input, output) {
   )
   })
 
-  res <- make_ranking(rasters, 0.5, 53.3)
-  dtable <- data.table(res)
-  dtable[,Seen := shinyInput(checkboxInput,nrow(dtable),'Seen_', value = FALSE)]
-  dtable[,NotSeen := shinyInput(checkboxInput,nrow(dtable),'Unseen_', value = FALSE)]
-  dtable[,Notchecked := shinyInput(checkboxInput, nrow(dtable), "Unchecked_", value = FALSE)]
 
-  output$Invasive <- renderTable({dtable},
+  output$Invasive <- renderTable({  res <- make_ranking(rasters, data_of_click$clicked$lng, data_of_click$clicked$lat)
+                                    dtable <- data.table(res)
+                                    dtable[,Seen := shinyInput(checkboxInput,nrow(dtable),'Seen_', value = FALSE)]
+                                    dtable[,NotSeen := shinyInput(checkboxInput,nrow(dtable),'Unseen_', value = FALSE)]
+                                    dtable[,Notchecked := shinyInput(checkboxInput, nrow(dtable), "Unchecked_", value = FALSE)]
+                                    dtable <- subset(dtable, select= c(1:2,4:9,3))
+                                    dtable <- dtable[1:5,]},
                                 server = FALSE,
                                 escape = FALSE,
                                 selection = 'none',
@@ -201,7 +204,7 @@ server <- function(input, output) {
     </p>
 
     <h2>Pipeline</h2>
-    <img src='https://github.com/iobis/findingdemo/blob/master/scheme.png?raw=true' style='width:640px;height:580px;'>
+    <img src='https://github.com/iobis/findingdemo/blob/master/images/scheme.png?raw=true' style='width:640px;height:580px;'>
 
     <h2>Repository</h2>
     <a href='https://github.com/iobis/findingdemo'>github.com/iobis/findingdemo</a>
