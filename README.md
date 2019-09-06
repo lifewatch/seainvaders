@@ -46,7 +46,7 @@ ggplot() +
     geom_point(data = occ, aes(x = longitude, y = latitude), size = 0.3)
 ```
 
-![suitability](cercopagis_pengoi.png)
+![suitability](images/cercopagis_pengoi.png)
 
 #### Create distance raster
 
