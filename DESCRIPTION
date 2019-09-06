@@ -27,5 +27,6 @@ Imports:
     shinyalert,
     gdistance,
     maptools,
-    rgdal
+    rgdal,
+    leaflet
 RoxygenNote: 6.1.1

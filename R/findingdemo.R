@@ -4,5 +4,5 @@
 #'
 #' @docType package
 #' @name findingdemo
-#' @import rgbif dplyr stringr ncdf4 raster shiny shinythemes sf shinyjs shinyalert gdistance maptools rgdal
+#' @import rgbif dplyr stringr ncdf4 raster shiny shinythemes sf shinyjs shinyalert gdistance maptools rgdal leaflet
 NULL
