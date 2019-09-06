@@ -51,9 +51,15 @@ ggplot() +
 #### Create distance raster
 
 ```r
-d <- create_distance_raster(occ = occ, res = 1000)
-plot(log10(d))
-points(occ$longitude, occ$latitude)
+occ <- get_occurrence(234025)
+d <- create_distance_raster(occ = occ, res = 2000)
+df <- as.data.frame(d, xy = TRUE)
+
+ggplot() +
+    geom_raster(data = df, aes(x = x, y = y, fill = distance)) +
+    scale_fill_viridis_c(trans = "log10", na.value = "#ffffff") +
+    coord_quickmap() +
+    geom_point(data = occ, aes(x = longitude, y = latitude), size = 0.3)
 ```
 
 #### Create ranking table

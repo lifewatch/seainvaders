@@ -33,6 +33,7 @@ create_distance_raster = function(occ, res, bbox = c(-45, 70, 26, 90)) {
   sel_feat <- head(occ, 3)
   A <- accCost(tr, sel_feat)
   A <- mask(A, d, inverse=TRUE)
+  names(A) <- "distance"
   return(A)
 }
 
