@@ -209,6 +209,9 @@ server <- function(input, output) {
 
     <h2>Pipeline</h2>
     <img src='https://github.com/iobis/findingdemo/blob/master/images/scheme.png?raw=true' style='width:700px;height:700px;'>
+    <br/>
+    <br/>
+    <br/>
     <img src='https://github.com/iobis/findingdemo/blob/master/images/cercopagis_pengoi.png?raw=true' style='width:800px; height:500px;'>
     <img src='https://github.com/iobis/findingdemo/blob/master/images/distance.png?raw= true' style='width:800px; height:500px;'>
 
