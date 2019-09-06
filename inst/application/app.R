@@ -37,11 +37,8 @@ ui <- fluidPage(
              titlePanel("Sea Invaders! (made by the FindingDemo Team)"),
              br(),
              fluidRow(
-                      br(),
-                      br(),
-
-                      column(width = 7,
-                             offset = 1,
+                      column(width = 9,
+                             offset = 0,
                              actionButton(inputId = "Locationinput",
                                           label = "Trace location",
                                           onClick = "shinyjs.geoloc()"),
@@ -54,7 +51,7 @@ ui <- fluidPage(
                              tableOutput(outputId = "Invasive")),
 
                       column(width = 3,
-                             offset = 1,
+                             offset = 0,
                              htmlOutput(outputId = "Introduction"),
                              br(),
                              textInput(inputId = "Name",
