@@ -193,7 +193,7 @@ server <- function(input, output) {
 
   #Text on the about page
   output$Abouttext <- renderUI({
-    HTML("<h1><strong>Sea Invaders!</strong></h1>
+    HTML("<br>
 
     <p><img src='https://github.com/iobis/findingdemo/blob/master/images/SeaInvaders_small.png?raw=true' style=''></p>
 
