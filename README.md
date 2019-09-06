@@ -69,6 +69,23 @@ rasters <- load_rasters()
 ranking <- make_ranking(rasters, 0.5, 53.3)
 ```
 
+#### Generate a score map
+
+```r
+rasters <- load_rasters()
+hs <- rasters[[234025]]$hs
+d <- rasters[[234025]]$d
+d <- projectRaster(d, hs, method = "bilinear")
+score <- overlay(hs, d, fun = Vectorize(calculate_score))
+names(score) <- "score"
+df <- as.data.frame(score, xy = TRUE)
+
+ggplot() +
+  geom_raster(data = df, aes(x = x, y = y, fill = score)) +
+  scale_fill_viridis_c(na.value = "#ffffff") +
+  coord_quickmap()
+```
+
 #### Launch shiny app
 
 ```r
