@@ -172,9 +172,9 @@ server <- function(input, output) {
 
   output$Invasive <- renderTable({  res <- make_ranking(rasters, data_of_click$clicked$lng, data_of_click$clicked$lat)
                                     dtable <- data.table(res)
-                                    dtable[,Seen := shinyInput(checkboxInput,nrow(dtable),'Seen_', value = FALSE)]
-                                    dtable[,NotSeen := shinyInput(checkboxInput,nrow(dtable),'Unseen_', value = FALSE)]
-                                    dtable[,Notchecked := shinyInput(checkboxInput, nrow(dtable), "Unchecked_", value = FALSE)]
+                                    dtable[,Seen := shinyInput(checkboxInput,nrow(dtable),'Seen_', value = FALSE, width="10")]
+                                    dtable[,NotSeen := shinyInput(checkboxInput,nrow(dtable),'Unseen_', value = FALSE, width="10")]
+                                    dtable[,Notchecked := shinyInput(checkboxInput, nrow(dtable), "Unchecked_", value = FALSE, width="10")]
                                     dtable <- subset(dtable, select= c(1:2,4:9,3))
                                     dtable <- dtable[1:5,]},
                                 server = FALSE,
