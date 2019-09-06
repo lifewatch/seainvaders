@@ -26,5 +26,6 @@ Imports:
     shinyjs,
     shinyalert,
     gdistance,
-    maptools
+    maptools,
+    rgdal
 RoxygenNote: 6.1.1
