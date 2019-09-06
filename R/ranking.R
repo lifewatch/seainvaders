@@ -31,7 +31,7 @@ calculate_score <- function(hs, d) {
 #' @export
 make_ranking <- function(rasters, lon, lat) {
   ws <- wrims_subset() %>%
-    mutate(image = paste0("<img src=\"", image, "\"/>"))
+    mutate(image = paste0("<img width=\"300\" src=\"", image, "\"/>"))
   ss <- ws$aphiaid
   result <- data.frame(ws, d = NA, hs = NA)
   for (i in 1:length(ss)) {
