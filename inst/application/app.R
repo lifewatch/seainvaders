@@ -34,7 +34,7 @@ ui <- fluidPage(
 
     #Tab 2 with the content of the application
     tabPanel("Application",
-             titlePanel("FindingDemo Application for EMODNet Open Sea Lab"),
+             titlePanel("Sea Invaders! (made by the FindingDemo Team)"),
              br(),
              fluidRow(
                       br(),
@@ -208,7 +208,6 @@ server <- function(input, output) {
 
     <h2>Repository</h2>
     <a href='https://github.com/iobis/findingdemo'>github.com/iobis/findingdemo</a>
-    <br>
     <br>
     <br>
     "
