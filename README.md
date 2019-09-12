@@ -6,7 +6,7 @@ Sea Invaders provides recreational divers with a 'most wanted' list of invasive 
 Access the application here:
 <https://seainvaders.eu/>
 
-![screenshot](images/FindingDemo_Screenshot.PNG)
+[![screenshot](images/FindingDemo_Screenshot.PNG)](https://seainvaders.eu/)
 
 
 ## The Team
