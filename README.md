@@ -4,9 +4,9 @@ Sea Invaders provides recreational divers with a 'most wanted' list of invasive 
 
 ## The application
 Access the application here:
-<rshiny.lifewatch.be/seainvaders/>
+<https://rshiny.lifewatch.be/seainvaders/>
 
-[![screenshot](images/FindingDemo_Screenshot.PNG)](rshiny.lifewatch.be/seainvaders/)
+[![screenshot](images/FindingDemo_Screenshot.PNG)](https://rshiny.lifewatch.be/seainvaders/)
 
 
 ## The Team
