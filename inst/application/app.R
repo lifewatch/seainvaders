@@ -195,7 +195,7 @@ server <- function(input, output) {
   output$Abouttext <- renderUI({
     HTML("<br>
 
-    <p><img src='https://github.com/iobis/findingdemo/blob/master/images/SeaInvaders_small.png?raw=true' style=''></p>
+    <p><img src='https://github.com/lifewatch/seainvaders/blob/master/images/SeaInvaders_small.png?raw=true' style=''></p>
 
     <h2>Concept</h2>
     <p align='justify'>
@@ -208,15 +208,15 @@ server <- function(input, output) {
     </p>
 
     <h2>Pipeline</h2>
-    <img src='https://github.com/iobis/findingdemo/blob/master/images/scheme.png?raw=true' style='width:700px;height:700px;'>
+    <img src='https://github.com/lifewatch/seainvaders/blob/master/images/scheme.png?raw=true' style='width:700px;height:700px;'>
     <br/>
     <br/>
     <br/>
-    <img src='https://github.com/iobis/findingdemo/blob/master/images/cercopagis_pengoi.png?raw=true' style='width:800px; height:500px;'>
-    <img src='https://github.com/iobis/findingdemo/blob/master/images/distance.png?raw= true' style='width:800px; height:500px;'>
+    <img src='https://github.com/lifewatch/seainvaders/blob/master/images/cercopagis_pengoi.png?raw=true' style='width:800px; height:500px;'>
+    <img src='https://github.com/lifewatch/seainvaders/blob/master/images/distance.png?raw= true' style='width:800px; height:500px;'>
 
     <h2>Repository</h2>
-    <a href='https://github.com/iobis/findingdemo'>github.com/iobis/findingdemo</a>
+    <a href='https://github.com/lifewatch/seainvaders'>github.com/lifewatch/seainvaders</a>
     <br>
     <br>
     "
